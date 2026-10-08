@@ -1,0 +1,146 @@
+.internship-section {
+  position: relative;
+  min-height: 60vh;
+  padding: 72px 24px 90px;
+}
+
+/* ================================
+   SECTION HEADING
+================================ */
+
+.internship-section > .section-heading {
+  width: min(100%, 760px);
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+.section-heading > span {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: var(--accent-hover);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  margin: 0 0 15px;
+  color: var(--text-primary);
+  font-size: clamp(28px, 4vw, 43px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+.section-heading p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* ================================
+   INTERNSHIP GRID
+================================ */
+
+.internship-grid {
+  display: grid;
+  width: min(100%, 1240px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 22px;
+  margin-inline: auto;
+}
+
+/* ================================
+   NO RESULT
+================================ */
+
+.no-result {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 55px 20px;
+
+  color: var(--text-secondary);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.025),
+      rgba(99, 102, 241, 0.035)
+    );
+
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+
+  text-align: center;
+}
+
+/* ================================
+   HOME DATA INFO
+================================ */
+
+.home-data-info {
+  width: min(100%, 1240px);
+  margin: 30px auto 0;
+  padding: 18px 22px;
+
+  background: rgba(99, 102, 241, 0.055);
+  border: 1px solid rgba(129, 140, 248, 0.13);
+  border-radius: var(--radius-md);
+
+  text-align: center;
+}
+
+.home-data-info p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 768px) {
+  .internship-section {
+    padding: 52px 16px 65px;
+  }
+
+  .internship-grid {
+    grid-template-columns: 1fr;
+    gap: 17px;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(27px, 6vw, 36px);
+  }
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 480px) {
+  .internship-section {
+    padding-inline: 14px;
+  }
+
+  .internship-section > .section-heading {
+    margin-bottom: 27px;
+  }
+
+  .section-heading > span {
+    font-size: 10px;
+    letter-spacing: 1.6px;
+  }
+
+  .section-heading p {
+    font-size: 13px;
+  }
+
+  .home-data-info {
+    padding: 16px;
+  }
+}

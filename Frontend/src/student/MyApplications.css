@@ -1,0 +1,224 @@
+
+.student-page {
+  min-height: 100%;
+  padding: 34px;
+  color: #f5f7ff;
+}
+
+.student-page-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 28px;
+}
+
+.student-page-heading span {
+  color: #9da9ff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.student-page-heading h1 {
+  margin: 8px 0 8px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.student-page-heading p {
+  margin: 0;
+  color: #9da7bd;
+  font-size: 14px;
+}
+
+.student-page-btn,
+.student-empty-card a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 11px 17px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7584ff, #a66cff);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.student-page-btn:hover,
+.student-empty-card a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(117, 132, 255, 0.2);
+}
+
+.student-empty-card {
+  min-height: 280px;
+  padding: 40px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(
+    145deg,
+    rgba(20, 26, 42, 0.94),
+    rgba(13, 18, 31, 0.98)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+}
+
+.student-empty-card > div {
+  margin-bottom: 12px;
+  font-size: 42px;
+}
+
+.student-empty-card h2 {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.student-empty-card p {
+  margin: 0 0 20px;
+  color: #8f98aa;
+  font-size: 14px;
+}
+
+.student-applications-list {
+  display: grid;
+  gap: 18px;
+}
+
+.application-history-card {
+  padding: 24px;
+  background: linear-gradient(
+    145deg,
+    rgba(20, 26, 42, 0.96),
+    rgba(13, 18, 31, 0.98)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+}
+
+.application-history-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.application-label {
+  color: #7584ff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+}
+
+.application-history-top h2 {
+  margin: 7px 0 0;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.application-status {
+  padding: 7px 11px;
+  border: 1px solid rgba(94, 234, 212, 0.18);
+  border-radius: 8px;
+  background: rgba(94, 234, 212, 0.08);
+  color: #5eead4;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.application-history-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.application-history-details div {
+  padding: 13px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.application-history-details span,
+.application-message span {
+  display: block;
+  margin-bottom: 5px;
+  color: #727d92;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.application-history-details strong {
+  display: block;
+  color: #dce2ef;
+  font-size: 13px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.application-message {
+  margin-top: 15px;
+  padding: 14px;
+  background: rgba(117, 132, 255, 0.045);
+  border: 1px solid rgba(117, 132, 255, 0.08);
+  border-radius: 10px;
+}
+
+.application-message p {
+  margin: 0;
+  color: #aeb6c7;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+@media (max-width: 850px) {
+  .student-page {
+    padding: 25px;
+  }
+
+  .application-history-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .student-page {
+    padding: 20px 15px;
+  }
+
+  .student-page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .student-page-heading h1 {
+    font-size: 27px;
+  }
+
+  .student-page-btn {
+    width: 100%;
+  }
+
+  .application-history-card {
+    padding: 18px;
+  }
+
+  .application-history-top {
+    flex-direction: column;
+  }
+
+  .application-history-details {
+    grid-template-columns: 1fr;
+  }
+}
+

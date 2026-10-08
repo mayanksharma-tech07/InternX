@@ -1,0 +1,83 @@
+
+.filter-panel {
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 21px;
+}
+
+.filter-group label {
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.filter-group input,
+.filter-group select {
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 12px;
+  color: var(--text-primary);
+  background: rgba(9, 9, 11, 0.78);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  outline: none;
+  font-size: 12px;
+  transition: var(--transition);
+}
+
+.filter-group input::placeholder {
+  color: var(--text-muted);
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.filter-group select option {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+.clear-filter-btn {
+  width: 100%;
+  min-height: 43px;
+  margin-top: 2px;
+  padding: 10px 14px;
+  color: #c7d2fe;
+  background: var(--accent-light);
+  border: 1px solid rgba(129, 140, 248, 0.2);
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.clear-filter-btn:hover {
+  color: white;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .filter-panel {
+    padding: 18px;
+  }
+
+  .filter-group {
+    margin-bottom: 16px;
+  }
+}

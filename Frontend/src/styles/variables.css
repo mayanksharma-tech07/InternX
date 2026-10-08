@@ -1,0 +1,34 @@
+
+:root {
+  --bg-primary: #09090b;
+  --bg-secondary: #111114;
+  --bg-card: rgba(24, 24, 27, 0.82);
+  --bg-card-hover: rgba(32, 32, 39, 0.96);
+
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-purple: #8b5cf6;
+  --accent-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
+
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(129, 140, 248, 0.42);
+  --glass-bg: rgba(18, 18, 24, 0.78);
+
+  --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.24);
+  --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.15);
+
+  --container-width: 1240px;
+  --header-height: 76px;
+  --section-spacing: 80px;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --transition: all 0.3s ease;
+}

@@ -1,0 +1,35 @@
+
+@media (max-width: 1024px) {
+  :root {
+    --section-spacing: 64px;
+  }
+
+  .container {
+    width: min(calc(100% - 40px), 900px);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 68px;
+    --section-spacing: 52px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    width: calc(100% - 32px);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-spacing: 42px;
+  }
+
+  .container {
+    width: calc(100% - 28px);
+  }
+}

@@ -1,0 +1,142 @@
+
+.auth-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  background:
+    radial-gradient(
+      circle at 10% 15%,
+      rgba(79, 70, 229, 0.16),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(249, 115, 22, 0.12),
+      transparent 25%
+    ),
+    #080b14;
+
+  color: #f5f7ff;
+}
+
+/* ================================
+   AUTH BRAND / LOGO
+================================ */
+
+.auth-brand {
+  width: 100%;
+  padding: 22px 6%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+  background: rgba(8, 11, 20, 0.78);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Logo Link */
+
+.auth-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  text-decoration: none;
+}
+
+/* Logo Icon */
+
+.auth-logo-mark {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: linear-gradient(
+    135deg,
+    #7584ff,
+    #a66cff
+  );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 8px 25px rgba(117, 132, 255, 0.25);
+}
+
+/* Logo Text */
+
+.auth-logo-text {
+  color: #ffffff;
+
+  font-size: 1.6rem;
+  font-weight: 800;
+
+  letter-spacing: -0.8px;
+}
+
+.auth-logo-text span {
+  color: #9da9ff;
+}
+
+/* Tagline */
+
+.auth-brand p {
+  margin: 0;
+
+  color: #9da7bd;
+
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+/* ================================
+   AUTH CONTENT
+================================ */
+
+.auth-content {
+  flex: 1;
+  width: 100%;
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 650px) {
+  .auth-brand {
+    padding: 18px 20px;
+  }
+
+  .auth-logo {
+    gap: 8px;
+  }
+
+  .auth-logo-mark {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 10px;
+  }
+
+  .auth-logo-text {
+    font-size: 1.35rem;
+  }
+
+  .auth-brand p {
+    display: none;
+  }
+}
+

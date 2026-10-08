@@ -1,0 +1,120 @@
+
+.company-card {
+  display: flex;
+  min-width: 0;
+  gap: 15px;
+  padding: 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+  transition: var(--transition);
+}
+
+.company-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-4px);
+}
+
+.company-card-logo {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  place-items: center;
+  overflow: hidden;
+  color: #c7d2fe;
+  background: var(--accent-light);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  font-size: 23px;
+}
+
+.company-card-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.company-card-content {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.company-card-content h3 {
+  margin: 2px 0 7px;
+  font-size: 17px;
+  overflow-wrap: anywhere;
+}
+
+.company-industry {
+  margin: 0 0 14px;
+  color: var(--accent-hover);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.company-card-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.company-card-info span {
+  padding: 6px 9px;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+  font-size: 10px;
+}
+
+.company-description {
+  margin: 0 0 20px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.company-view-btn {
+  width: 100%;
+  min-height: 41px;
+  margin-top: auto;
+  padding: 10px 14px;
+  color: white;
+  background: var(--accent-gradient);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.company-view-btn:hover {
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 520px) {
+  .company-card {
+    padding: 18px;
+    gap: 12px;
+  }
+
+  .company-card-logo {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  .company-card-content h3 {
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,165 @@
+.company-details-page {
+  width: min(100% - 32px, 900px);
+  margin: 0 auto;
+  padding: 40px 0 70px;
+}
+
+.company-back-btn {
+  margin-bottom: 22px;
+  padding: 10px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.company-back-btn:hover {
+  border-color: var(--accent);
+  background: var(--bg-card-hover);
+}
+
+.company-details-card {
+  padding: clamp(22px, 5vw, 42px);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  background: linear-gradient(
+    145deg,
+    rgba(24, 24, 27, 0.97),
+    rgba(15, 15, 20, 0.97)
+  );
+  box-shadow: var(--shadow-card);
+}
+
+.company-details-header {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.company-details-logo {
+  width: 82px;
+  height: 82px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 2rem;
+}
+
+.company-details-header h1 {
+  margin: 0 0 8px;
+  color: var(--text-primary);
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  letter-spacing: -1px;
+  overflow-wrap: anywhere;
+}
+
+.company-details-header p {
+  margin: 0;
+  color: var(--accent-hover);
+}
+
+.company-details-info {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.company-details-info > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.company-details-info span {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.company-details-info strong {
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.company-about h2 {
+  margin: 0 0 14px;
+  color: var(--text-primary);
+  font-size: 1.4rem;
+}
+
+.company-about p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.company-internship-btn {
+  margin-top: 28px;
+  padding: 14px 22px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--accent-gradient);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.company-internship-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.company-not-found {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.company-not-found button {
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent-gradient);
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .company-details-header {
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .company-details-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    font-size: 1.5rem;
+  }
+
+  .company-details-info {
+    grid-template-columns: 1fr;
+  }
+}

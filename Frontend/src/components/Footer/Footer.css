@@ -1,0 +1,128 @@
+
+.footer {
+  position: relative;
+  margin-top: 40px;
+  padding-top: 54px;
+  background: rgba(12, 12, 16, 0.86);
+  border-top: 1px solid var(--border-color);
+  backdrop-filter: blur(12px);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 36px;
+  padding-bottom: 42px;
+}
+
+.footer-brand {
+  max-width: 320px;
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.footer-logo .logo-mark {
+  width: 38px;
+  height: 38px;
+}
+
+.footer-brand > p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.footer-links,
+.footer-contact {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  margin: 5px 0 8px;
+  color: var(--text-primary);
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.footer-links a:hover {
+  color: var(--accent-hover);
+  transform: translateX(3px);
+}
+
+.footer-contact p {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.footer-contact p svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--accent-hover);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-bottom .container {
+  padding-block: 20px;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+}
+
+@media (max-width: 520px) {
+  .footer {
+    padding-top: 38px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 18px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+    max-width: 100%;
+  }
+
+  .footer-links,
+  .footer-contact {
+    gap: 10px;
+  }
+}
