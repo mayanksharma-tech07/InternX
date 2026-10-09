@@ -1,7 +1,12 @@
+
+// frontend/src/forms/ApplicationForm.jsx
+
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Toast from "../components/Common/Toast";
 import "./ApplicationForm.css";
+
+const API_BASE_URL = "https://internx-backend-kzn5.onrender.com";
 
 const ApplicationForm = () => {
   const { id } = useParams();
@@ -26,53 +31,99 @@ const ApplicationForm = () => {
     message: "",
   });
 
+  // Fetch internship details from Django backend
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchInternship = async () => {
+      setLoading(true);
+      setError("");
+      setInternship(null);
+
       try {
         const response = await fetch(
-          `http://127.0.0.1:8000/api/internships/${id}/`
+          `${API_BASE_URL}/api/internships/${id}/`,
+          { signal: controller.signal }
         );
 
+        const data = await response.json().catch(() => null);
+
         if (!response.ok) {
-          throw new Error("Internship not found");
+          throw new Error(
+            data?.detail ||
+              data?.error ||
+              "Internship not found. Please try again."
+          );
         }
 
-        const data = await response.json();
-        setInternship(data);
+        // Handle an API that returns either one object
+        // or an object containing the internship.
+        const internshipData = data?.results
+          ? data.results.find(
+              (item) => String(item.id) === String(id)
+            )
+          : data?.internship || data;
+
+        if (
+          !internshipData ||
+          String(internshipData.id) !== String(id)
+        ) {
+          throw new Error(
+            "Internship not found for this ID."
+          );
+        }
+
+        setInternship(internshipData);
       } catch (err) {
+        if (err.name === "AbortError") return;
+
         console.error("Internship fetch error:", err);
-        setError("Unable to load internship details.");
+        setError(
+          err.message ||
+            "Unable to load internship details."
+        );
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 
-    fetchInternship();
+    if (id) {
+      fetchInternship();
+    } else {
+      setError("Internship ID is missing.");
+      setLoading(false);
+    }
+
+    return () => controller.abort();
   }, [id]);
 
   const showToast = (message, type = "success") => {
-    setToast({
-      message,
-      type,
-    });
+    setToast({ message, type });
   };
 
   const closeToast = () => {
-    setToast({
-      message: "",
-      type: "success",
-    });
+    setToast({ message: "", type: "success" });
   };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
     setFormData((previous) => ({
       ...previous,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
   };
 
+  // Submit application to Django backend
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!internship) {
+      showToast("Internship details are unavailable.", "error");
+      return;
+    }
 
     const token = localStorage.getItem("internxToken");
 
@@ -81,7 +132,7 @@ const ApplicationForm = () => {
 
       setTimeout(() => {
         navigate("/login");
-      }, 3500);
+      }, 2000);
 
       return;
     }
@@ -91,7 +142,7 @@ const ApplicationForm = () => {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/api/applications/",
+        `${API_BASE_URL}/api/applications/`,
         {
           method: "POST",
           headers: {
@@ -100,33 +151,42 @@ const ApplicationForm = () => {
           },
           body: JSON.stringify({
             internship: Number(id),
-            name: formData.name,
-            email: formData.email,
-            contact: formData.contact,
-            address: formData.address,
-            resume: formData.resume,
-            message: formData.message,
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            contact: formData.contact.trim(),
+            address: formData.address.trim(),
+            resume: formData.resume.trim(),
+            message: formData.message.trim(),
           }),
         }
       );
 
-      const data = await response.json();
+      const data = await response.json().catch(() => null);
 
       if (!response.ok) {
-        throw new Error(
-          data.detail ||
-            data.non_field_errors?.[0] ||
-            "Application submission failed."
-        );
+        const errorMessage =
+          data?.detail ||
+          data?.error ||
+          data?.non_field_errors?.[0] ||
+          Object.entries(data || {})
+            .map(([field, messages]) =>
+              `${field}: ${
+                Array.isArray(messages)
+                  ? messages.join(", ")
+                  : String(messages)
+              }`
+            )
+            .join(" | ") ||
+          `Application failed (${response.status}).`;
+
+        throw new Error(errorMessage);
       }
 
-      // Application successfully saved in Django database
       showToast(
         "Your application has been submitted successfully!",
         "success"
       );
 
-      // Form clear kar denge, page par hi rahenge
       setFormData({
         name: "",
         email: "",
@@ -136,10 +196,11 @@ const ApplicationForm = () => {
         message: "",
       });
     } catch (err) {
-      console.error("Application error:", err);
+      console.error("Application submission error:", err);
 
       showToast(
-        err.message || "Something went wrong. Please try again.",
+        err.message ||
+          "Unable to submit application. Please try again.",
         "error"
       );
     } finally {
@@ -157,13 +218,16 @@ const ApplicationForm = () => {
     );
   }
 
-  if (error && !internship) {
+  if (error || !internship) {
     return (
       <section className="application-not-found">
         <h2>Internship not found</h2>
-        <p>{error}</p>
+        <p>{error || "Internship details are unavailable."}</p>
 
-        <button onClick={() => navigate("/internships")}>
+        <button
+          type="button"
+          onClick={() => navigate("/internships")}
+        >
           Back to Internships
         </button>
       </section>
@@ -193,22 +257,28 @@ const ApplicationForm = () => {
           <h1>Apply for Internship</h1>
 
           <p>
-            Apply for <strong>{internship?.title}</strong>
+            Apply for <strong>{internship.title}</strong>
           </p>
 
           <div className="application-internship-info">
-            <span>🏢 {internship?.company_name}</span>
-            <span>📍 {internship?.location}</span>
-            <span>⏳ {internship?.duration}</span>
+            <span>
+              🏢{" "}
+              {internship.company_name ||
+                internship.company ||
+                "Company"}
+            </span>
+
+            <span>📍 {internship.location || "Not specified"}</span>
+
+            <span>
+              ⏳ {internship.duration || "Not specified"}
+            </span>
           </div>
         </div>
 
         <form onSubmit={handleSubmit}>
           <div className="application-field">
-            <label htmlFor="application-name">
-              Full Name
-            </label>
-
+            <label htmlFor="application-name">Full Name</label>
             <input
               id="application-name"
               type="text"
@@ -224,7 +294,6 @@ const ApplicationForm = () => {
             <label htmlFor="application-email">
               Email Address
             </label>
-
             <input
               id="application-email"
               type="email"
@@ -240,7 +309,6 @@ const ApplicationForm = () => {
             <label htmlFor="application-contact">
               Contact Number
             </label>
-
             <input
               id="application-contact"
               type="tel"
@@ -253,10 +321,7 @@ const ApplicationForm = () => {
           </div>
 
           <div className="application-field">
-            <label htmlFor="application-address">
-              Address
-            </label>
-
+            <label htmlFor="application-address">Address</label>
             <textarea
               id="application-address"
               name="address"
@@ -272,7 +337,6 @@ const ApplicationForm = () => {
             <label htmlFor="application-resume">
               Resume Link <small>(Optional)</small>
             </label>
-
             <input
               id="application-resume"
               type="url"
@@ -287,7 +351,6 @@ const ApplicationForm = () => {
             <label htmlFor="application-message">
               Additional Message <small>(Optional)</small>
             </label>
-
             <textarea
               id="application-message"
               name="message"
